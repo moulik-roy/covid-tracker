@@ -1,6 +1,6 @@
 import { Card, CardContent, Grid, Typography } from "@material-ui/core";
 import React from "react";
-import { GlobalCovidData } from "./models/covidData";
+import { GlobalCovidData } from "../../models/covidData";
 
 interface Props {
     data: GlobalCovidData;

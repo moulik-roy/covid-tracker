@@ -13,7 +13,7 @@ export interface CountryCovidData extends GlobalCovidData {
     Country: string;
     CountryCode: string;
     Slug: string;
-    Premium: JSON;
+    Premium: Object;
 }
 
 export interface CovidData {

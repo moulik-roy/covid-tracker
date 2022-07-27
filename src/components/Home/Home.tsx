@@ -1,13 +1,13 @@
 import { Container, Button, Tab, Tabs, Typography, CircularProgress } from "@material-ui/core";
 import React, { useState, useEffect, useMemo } from "react";
 import { useQueryClient } from "react-query";
-import { CountrySection } from "./CountrySection";
-import { GlobalSection } from "./GlobalSection";
-import { CovidDataUseQuery } from "./react-query/covid";
+import { CountrySection } from "../CountrySection/CountrySection";
+import { GlobalSection } from "../GlobalSection/GlobalSection";
+import { CovidDataUseQuery } from "../../react-query/covid";
 
 type Section = "Global" | "Country";
 
-export const Main: React.FC = () => {
+export const Home: React.FC = () => {
     const [section, setSection] = useState<Section>("Global");
     const [error, setError] = useState<string>();
 
@@ -26,7 +26,7 @@ export const Main: React.FC = () => {
 
     return (
         <Container>
-            <Typography variant="h2" component="h2" color="primary">
+            <Typography variant="h2" component="h2" color="primary" align="center">
                 Covid Tracker App
             </Typography>
             {
@@ -34,6 +34,7 @@ export const Main: React.FC = () => {
             }
             {covidData && (<>
                 <Button
+                    id="refresh-bttn"
                     variant="contained"
                     color="primary"
                     onClick={() => queryClient.invalidateQueries("covidData")}
@@ -43,8 +44,9 @@ export const Main: React.FC = () => {
                 <Tabs
                     value={section}
                     onChange={(event: React.ChangeEvent<{}>, newValue: Section) => setSection(newValue)}
-                    textColor="primary"
+                    textColor="secondary"
                     indicatorColor="primary"
+                    variant="fullWidth"
                 >
                     <Tab value="Global" label="Global" />
                     <Tab value="Country" label="Country" />
@@ -54,8 +56,7 @@ export const Main: React.FC = () => {
             {
                 covidData && (section === "Global"
                     ? <GlobalSection data={covidData.Global} />
-                    : <CountrySection data={covidData.Countries} />
-                )
+                    : <CountrySection data={covidData.Countries} />)
             }
             {error && <Typography variant="h6" component="h6" color="error">{error}</Typography>}
         </Container >

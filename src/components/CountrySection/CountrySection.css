@@ -1,0 +1,21 @@
+#search-div {
+    background-color: #dedede;
+    padding: 10px;
+    user-select: none;
+}
+
+#quick-searchbar {
+    background-color: white;
+    border-radius: 20px;
+    padding: 5px 20px;
+    border: 1px white solid;
+}
+
+#quick-searchbar:focus {
+    border-color: black
+}
+
+#ag-grid-div {
+    height: 520px;
+    width: 100%;
+}
