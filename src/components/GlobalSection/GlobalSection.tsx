@@ -53,15 +53,15 @@ export const GlobalSection: React.FC<Props> = ({ data }) => {
             <CardContent>
                 {
                     items.map(item => (
-                        <Grid container spacing={1} key={item.id}>
-                            <Grid container item xs={12} spacing={3}>
+                        <Grid container spacing={4} key={item.id}>
+                            <Grid container item xs={12}>
                                 <>
-                                    <Grid item xs={4}>
+                                    <Grid item xs={5}>
                                         <Typography variant="h5" component="h5" color="primary">{item.label}: </Typography>
                                     </Grid>
                                 </>
                                 <>
-                                    <Grid item xs={4}>
+                                    <Grid item xs={7}>
                                         <Typography variant="h5" component="h5" color="initial">{item.value}</Typography>
                                     </Grid>
                                 </>
@@ -69,7 +69,7 @@ export const GlobalSection: React.FC<Props> = ({ data }) => {
                         </Grid>
                     ))
                 }
-            </CardContent >
-        </Card >
+            </CardContent>
+        </Card>
     )
 }
