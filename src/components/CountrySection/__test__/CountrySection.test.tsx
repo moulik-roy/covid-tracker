@@ -36,6 +36,16 @@ const data: CountryCovidData[] = [
     }
 ];
 
+const gridColumns = [
+    "Country Name",
+    "New Confirmed",
+    "Total Confirmed",
+    "New Deaths",
+    "Total Deaths",
+    "New Recovered",
+    "Total Recovered"
+]
+
 afterEach(cleanup);
 
 describe("it renders without crashing", () => {
@@ -53,8 +63,11 @@ describe("it renders without crashing", () => {
         user.type(filterInput, country);
     });
 
-    it("renders the ag grid correctly", () => {
+    it("renders all the ag grid columns", () => {
         render(<CountrySection data={data} />);
+        gridColumns.forEach(column =>
+            expect(screen.getByText(column)).toBeDefined()
+        );
         const gridCell = screen.getAllByText(country);
         expect(gridCell).toBeDefined();
     });

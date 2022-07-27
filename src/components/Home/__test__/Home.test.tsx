@@ -1,9 +1,10 @@
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { Home } from "../Home";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Home } from "../Home";
 import { CovidData } from "../../../models/covidData";
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import user from "@testing-library/user-event";
 
 const covidData: CovidData = {
     "ID": "08ee6634-b4d8-406d-a525-8e84191b9a39",
@@ -82,21 +83,21 @@ const renderHome = () => {
     )
 }
 
-
 describe("it renders without crashing", () => {
     it("renders the home component", () => {
         render(renderHome());
-        const homeHeader = screen.getByText(/Covid Tracker App/i);
+        const homeHeader = screen.getByText(/Covid Tracker/i);
         expect(homeHeader).toBeDefined();
         expect(homeHeader).toBeInTheDocument();
     });
 
     it("renders the refresh button", async () => {
         render(renderHome());
-        const refreshBttn = await waitFor(() => screen.findByText(/Refresh/i));
+        const refreshBttn = screen.getByTestId('refresh-bttn');
         expect(refreshBttn).toBeDefined();
         expect(refreshBttn).toBeInTheDocument();
-        expect(refreshBttn).toHaveTextContent(/Refresh/i);
+        await waitFor(() => expect(refreshBttn).toBeEnabled());
+        user.click(refreshBttn);
     });
 
     it("renders the Global section", async () => {
@@ -104,6 +105,7 @@ describe("it renders without crashing", () => {
         const globalTab = await waitFor(() => screen.findByText(/Global/i));
         expect(globalTab).toBeDefined();
         expect(globalTab).toBeInTheDocument();
+        expect(globalTab).toBeEnabled();
     });
 
     it("renders the Country section", async () => {
@@ -111,5 +113,7 @@ describe("it renders without crashing", () => {
         const countryTab = await waitFor(() => screen.findByText(/Country/i));
         expect(countryTab).toBeDefined();
         expect(countryTab).toBeInTheDocument();
+        user.click(countryTab);
+        expect(countryTab).toBeEnabled();
     });
 });

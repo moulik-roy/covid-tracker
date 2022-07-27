@@ -14,8 +14,3 @@
 #quick-searchbar:focus {
     border-color: black
 }
-
-#ag-grid-div {
-    height: 520px;
-    width: 100%;
-}

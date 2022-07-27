@@ -62,9 +62,6 @@ export const CountrySection: React.FC<Props> = ({ data }) => {
 
     const defaultColumnDef = {
         flex: 1,
-        filterParams: {
-            debounceMs: 0
-        },
         resizable: true,
         sortable: true,
     }
@@ -82,12 +79,13 @@ export const CountrySection: React.FC<Props> = ({ data }) => {
                     disableUnderline
                 />
             </div>
-            <div id="ag-grid-div" className="ag-theme-alpine">
+            <div className="ag-theme-alpine">
                 <AgGridReact
                     onGridReady={onGridReady}
                     rowData={data}
                     columnDefs={columnDefs}
                     defaultColDef={defaultColumnDef}
+                    domLayout="autoHeight"
                     pagination={true}
                     paginationPageSize={25}
                 />
