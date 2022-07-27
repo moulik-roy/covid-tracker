@@ -57,12 +57,23 @@ export const GlobalSection: React.FC<Props> = ({ data }) => {
                             <Grid container item xs={12}>
                                 <>
                                     <Grid item xs={5}>
-                                        <Typography variant="h5" component="h5" color="primary">{item.label}: </Typography>
+                                        <Typography variant="h5" component="h5" color="primary">
+                                            {item.label}
+                                        </Typography>
                                     </Grid>
                                 </>
                                 <>
-                                    <Grid item xs={7}>
-                                        <Typography variant="h5" component="h5" color="initial">{item.value}</Typography>
+                                    <Grid item xs={1}>
+                                        <Typography variant="h5" component="h5" color="initial">
+                                            :
+                                        </Typography>
+                                    </Grid>
+                                </>
+                                <>
+                                    <Grid item xs={6}>
+                                        <Typography variant="h5" component="h5" color="initial">
+                                            {item.value}
+                                        </Typography>
                                     </Grid>
                                 </>
                             </Grid>
