@@ -5,7 +5,6 @@ import { CountrySection } from "../CountrySection/CountrySection";
 import { GlobalSection } from "../GlobalSection/GlobalSection";
 import { CovidDataUseQuery } from "../../react-query/covid";
 import RefreshIcon from "@material-ui/icons/Refresh";
-import IntuitImg from "./intuit.png";
 
 type Section = "Global" | "Country";
 
@@ -36,9 +35,6 @@ export const Home: React.FC = () => {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton>
-                        <img src={IntuitImg} alt="Intuit logo" width={'70px'} />
-                    </IconButton>
                     <Box sx={{ flexGrow: 1 }}>
                         <Typography style={{ userSelect: "none" }} variant="h4" component="h4" align="center">
                             Covid Tracker
