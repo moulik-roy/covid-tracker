@@ -26,6 +26,12 @@ export const Home: React.FC = () => {
         , [covidDataQuery.isError, covidDataQuery.error]
     );
 
+    const refreshHandler = (): void => {
+        if (covidDataQuery.isStale) {
+            queryClient.invalidateQueries("covidData");
+        }
+    }
+
     return (<>
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -43,7 +49,7 @@ export const Home: React.FC = () => {
                         data-testid="refresh-bttn"
                         color="inherit"
                         disabled={!covidData}
-                        onClick={() => queryClient.invalidateQueries("covidData")}
+                        onClick={refreshHandler}
                     >
                         <Tooltip title="Refresh" aria-label="Refresh"><RefreshIcon /></Tooltip>
                     </IconButton>

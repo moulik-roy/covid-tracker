@@ -11,36 +11,36 @@ const mapDataToList = (data: GlobalCovidData) => {
         {
             'id': 0,
             'label': 'New Confirmed',
-            'value': data.NewConfirmed,
+            'value': data.NewConfirmed.toLocaleString("en-in"),
         },
         {
             'id': 1,
             'label': 'Total Confirmed',
-            'value': data.TotalConfirmed,
+            'value': data.TotalConfirmed.toLocaleString("en-in"),
         },
         {
             'id': 2,
             'label': 'New Deaths',
-            'value': data.NewDeaths,
+            'value': data.NewDeaths.toLocaleString("en-in"),
         },
         {
             'id': 3,
             'label': 'Total Deaths',
-            'value': data.TotalDeaths,
+            'value': data.TotalDeaths.toLocaleString("en-in"),
         },
         {
             'id': 4,
             'label': 'New Recovered',
-            'value': data.NewRecovered,
+            'value': data.NewRecovered.toLocaleString("en-in"),
         },
         {
             'id': 5,
             'label': 'Total Recovered',
-            'value': data.TotalRecovered,
+            'value': data.TotalRecovered.toLocaleString("en-in"),
         },
         {
             'id': 6,
-            'label': 'Date',
+            'label': 'Last Updated DateTime',
             'value': new Date(data.Date).toString(),
         }
     ]
@@ -55,27 +55,21 @@ export const GlobalSection: React.FC<Props> = ({ data }) => {
                     items.map(item => (
                         <Grid container spacing={4} key={item.id}>
                             <Grid container item xs={12}>
-                                <>
-                                    <Grid item xs={5}>
-                                        <Typography variant="h5" component="h5" color="primary">
-                                            {item.label}
-                                        </Typography>
-                                    </Grid>
-                                </>
-                                <>
-                                    <Grid item xs={1}>
-                                        <Typography variant="h5" component="h5" color="initial">
-                                            :
-                                        </Typography>
-                                    </Grid>
-                                </>
-                                <>
-                                    <Grid item xs={6}>
-                                        <Typography variant="h5" component="h5" color="initial">
-                                            {item.value}
-                                        </Typography>
-                                    </Grid>
-                                </>
+                                <Grid item xs={5}>
+                                    <Typography variant="h5" component="h5" color="primary">
+                                        {item.label}
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={1}>
+                                    <Typography variant="h5" component="h5" color="initial">
+                                        :
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Typography variant="h5" component="h5" color="initial">
+                                        {item.value}
+                                    </Typography>
+                                </Grid>
                             </Grid>
                         </Grid>
                     ))

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CountryCovidData } from "../../models/covidData";
 import { Input } from "@material-ui/core";
-import { GridApi } from "ag-grid-community";
+import { ColDef, GridApi, ValueFormatterParams } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
@@ -15,14 +15,15 @@ export const CountrySection: React.FC<Props> = ({ data }) => {
     const [gridApi, setGridApi] = useState<GridApi>();
     const [filter, setFilter] = useState<string>("");
 
-    const onGridReady = (params: { api: GridApi }) => {
-        setGridApi(params.api);
-    }
+    const onGridReady = (params: { api: GridApi }) => setGridApi(params.api);
 
     useEffect(() => gridApi?.setQuickFilter(filter)
         , [gridApi, filter]);
 
-    const columnDefs = [
+    const numberFormatter = (params: ValueFormatterParams<CountryCovidData[], number>): string =>
+        params.value.toLocaleString("en-in")
+
+    const columnDefs: ColDef[] = [
         {
             field: 'Country',
             headerName: 'Country Name',
@@ -32,31 +33,37 @@ export const CountrySection: React.FC<Props> = ({ data }) => {
             field: 'NewConfirmed',
             headerName: 'New Confirmed',
             filter: 'agNumberColumnFilter',
+            valueFormatter: numberFormatter,
         },
         {
             field: 'TotalConfirmed',
             headerName: 'Total Confirmed',
             filter: 'agNumberColumnFilter',
+            valueFormatter: numberFormatter,
         },
         {
             field: 'NewDeaths',
             headerName: 'New Deaths',
             filter: 'agNumberColumnFilter',
+            valueFormatter: numberFormatter,
         },
         {
             field: 'TotalDeaths',
             headerName: 'Total Deaths',
             filter: 'agNumberColumnFilter',
+            valueFormatter: numberFormatter,
         },
         {
             field: 'NewRecovered',
             headerName: 'New Recovered',
             filter: 'agNumberColumnFilter',
+            valueFormatter: numberFormatter,
         },
         {
             field: 'TotalRecovered',
             headerName: 'Total Recovered',
             filter: 'agNumberColumnFilter',
+            valueFormatter: numberFormatter,
         }
     ];
 
